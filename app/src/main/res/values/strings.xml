@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Directorio</string>
+    <string name="reproductor">Reproductor</string>
+    <string name="listViewAlarma">Alarma</string>
+    <string name="agregar">Agregar</string>
+    <string name="cancion_hint">Nombre de la cancion</string>
+    <string name="artista_hint">Nombre del artista</string>
+
+    <!-- Alarmas -->
+    <string-array name="alarmas">
+        <item>6:00 pm</item>
+        <item>5:00 am</item>
+        <item>5:30 am</item>
+        <item>12:30 pm</item>
+    </string-array>
+</resources>
