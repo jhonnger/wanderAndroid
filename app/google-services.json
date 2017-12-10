@@ -1,0 +1,41 @@
+{
+  "project_info": {
+    "project_number": "873514915974",
+    "firebase_url": "https://chat-34f72.firebaseio.com",
+    "project_id": "chat-34f72"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873514915974:android:68aca912be02e825",
+        "android_client_info": {
+          "package_name": "com.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873514915974-u9l7ue0n0cv5nfqep0sk94b51hpeluv0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_gJTmHavEbB8sarcj5zDgB72qFrJu35M"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
