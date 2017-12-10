@@ -73,8 +73,9 @@ public class InstitucionAdapter extends ArrayAdapter<Telefono> {
                     // for ActivityCompat#requestPermissions for more details.
 
                     context.startActivity(intent);
-                    return;
+                   return;
                 }
+                context.startActivity(intent);
             }
         });
         return view;

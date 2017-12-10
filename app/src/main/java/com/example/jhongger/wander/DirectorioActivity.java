@@ -45,10 +45,10 @@ public class DirectorioActivity extends AppCompatActivity {
                 new Telefono( "B Santa Rosa", "306255")
         };
         Telefono telefonosBomberos[] = {
-                new Telefono( "B Santa Rosa", "306255"),
                 new Telefono( "Emergencias", "105"),
                 new Telefono( "Muni Castilla", "#961092025"),
                 new Telefono( "Hospital Regional", "306265"),
+                new Telefono( "B Santa Rosa", "306255")
         };
 
         Institucion instituciones[] = {
