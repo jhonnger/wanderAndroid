@@ -31,14 +31,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                SimpleDateFormat formateadorF = new SimpleDateFormat("dd/MM/yy");
-                SimpleDateFormat formateadorH = new SimpleDateFormat("HH:mm:ss");
-                String fecha = formateadorF.format(new Date());
-                String hora = formateadorH.format(new Date());
 
-                Mensaje msg = new Mensaje("jhonny1",hora,"1",fecha);
-                myref.push().setValue(msg);
-                Toast.makeText(MainActivity.this,msg.getMessager(), Toast.LENGTH_SHORT).show();
             }
         });
     }
