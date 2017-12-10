@@ -15,12 +15,14 @@ public class Mensaje {
     private String messager;
     private String estado;
     private String fecha;
+    private String time;
 
-    public Mensaje(String name, String messager, String estado, String fecha) {
+    public Mensaje(String name, String messager, String estado, String fecha, String time) {
         this.name = name;
         this.messager = messager;
         this.estado = estado;
         this.fecha = fecha;
+        this.time = time;
     }
 
     public String getName() {
@@ -53,5 +55,13 @@ public class Mensaje {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
