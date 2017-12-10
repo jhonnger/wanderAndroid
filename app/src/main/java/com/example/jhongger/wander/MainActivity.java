@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -45,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navegarAlarma(View view){
-        Intent intent = new Intent(this, TelefonoActivity.class);
+        Intent intent = new Intent(this, DirectorioActivity.class);
         startActivity(intent);
     }
 

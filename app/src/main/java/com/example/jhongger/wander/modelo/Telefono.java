@@ -1,29 +1,15 @@
 package com.example.jhongger.wander.modelo;
 
-/**
- * Created by jhongger on 10/12/2017.
- */
-
 public class Telefono {
-    private String institucion;
     private String nombre;
     private String numero;
 
-    public Telefono(String institucion, String nombre, String numero) {
-        this.institucion = institucion;
+    public Telefono( String nombre, String numero) {
         this.nombre = nombre;
         this.numero = numero;
     }
 
-    public String getInstitucion() {
-        return institucion;
-    }
-
-    public void setInstitucion(String institucion) {
-        this.institucion = institucion;
-    }
-
-    public String getNombre() {
+  public String getNombre() {
         return nombre;
     }
 
