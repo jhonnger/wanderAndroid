@@ -5,6 +5,7 @@ package com.example.jhongger.wander.service;
  */
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -25,6 +26,7 @@ public class LocationService implements LocationListener {
     private Boolean isGPSEnabled;
     private Boolean isNetworkEnabled;
     private Location location;
+    private final int MY_PERMISSIONS_REQUETS=1;
     Context mContext;
 
     public LocationService(Context mContext) {
@@ -71,6 +73,10 @@ public class LocationService implements LocationListener {
                 if (isNetworkEnabled) {
                     if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         Log.d("","Faltan Permisos");
+                        ActivityCompat.requestPermissions((Activity) mContext,
+                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},
+                                MY_PERMISSIONS_REQUETS);
+
                     }
                     locationManager.requestLocationUpdates(
                             LocationManager.NETWORK_PROVIDER,
@@ -103,5 +109,5 @@ public class LocationService implements LocationListener {
         return location;
     }
 
-
+    
 }
