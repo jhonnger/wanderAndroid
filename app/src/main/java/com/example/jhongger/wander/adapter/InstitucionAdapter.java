@@ -4,20 +4,19 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.example.jhongger.wander.CategoriaTelefonoActivity;
-import com.example.jhongger.wander.DirectorioActivity;
-import com.example.jhongger.wander.MainActivity;
 import com.example.jhongger.wander.R;
 import com.example.jhongger.wander.modelo.Telefono;
+import com.example.jhongger.wander.service.LocationService;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,9 +25,15 @@ import java.util.Date;
 import java.util.List;
 
 
-public class InstitucionAdapter extends ArrayAdapter<Telefono> {
+public class InstitucionAdapter extends ArrayAdapter<Telefono> implements LocationListener {
+
+    LocationService locationService;
+    Location location;
+    Persona persona;
+    Mensaje mensaje;
     public InstitucionAdapter(Context context, List<Telefono> objects) {
         super(context, R.layout.institucion_template, objects);
+
     }
 
     @Override
@@ -39,6 +44,7 @@ public class InstitucionAdapter extends ArrayAdapter<Telefono> {
             view = inflater.inflate(R.layout.institucion_template, null);
         }
 
+
         //Definicion de objetos de la interfaz grafica
         TextView nombre = (TextView) view.findViewById(R.id.nombreTelefono);
         //TextView telefono = (TextView) view.findViewById(R.id.numeroTelefono);
@@ -47,9 +53,11 @@ public class InstitucionAdapter extends ArrayAdapter<Telefono> {
         //telefono.setText(getItem(position).getNumero());
 
         final Context context = getContext();
-
+        locationService = new LocationService(context);
+        persona = new Persona();
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         final DatabaseReference myref = db.getReference(FirebaseReferences.notification_ref);
+
 
 
         nombre.setOnClickListener(new View.OnClickListener() {
@@ -57,6 +65,10 @@ public class InstitucionAdapter extends ArrayAdapter<Telefono> {
             public void onClick(View view) {
 
 
+                location = locationService.getLocation();
+                String lat,lon;
+                lat = String.valueOf(location.getLatitude());
+                lon = String.valueOf(location.getLongitude());
                 Date fechaMax = new Date("31/12/2200");
                 Date date = new Date();
                 SimpleDateFormat formateadorF = new SimpleDateFormat("dd/MM/yy");
@@ -66,10 +78,8 @@ public class InstitucionAdapter extends ArrayAdapter<Telefono> {
                 String hora = formateadorH.format(date);
                 int aux = (int) (fechaMax.getTime()-date.getTime());
                 String time =String.valueOf(aux);
-
-                Mensaje msg = new Mensaje("jhonny1",hora,"1",fecha,time);
-                myref.push().setValue(msg);
-                Toast.makeText(context,msg.getMessager(), Toast.LENGTH_SHORT).show();
+                mensaje = new Mensaje(persona,"robo",hora,fecha,time,lat,lon);
+                myref.push().setValue(mensaje);
 
 
                 String posted_by = "306265";
@@ -80,5 +90,26 @@ public class InstitucionAdapter extends ArrayAdapter<Telefono> {
             }
         });
         return view;
+    }
+
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String s, int i, Bundle bundle) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String s) {
+
     }
 }

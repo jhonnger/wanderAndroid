@@ -1,5 +1,7 @@
 package com.example.jhongger.wander;
 
+import android.content.Context;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
@@ -19,6 +21,10 @@ public class DirectorioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_view);
+
+
+
+
 
         DirectorioAdapter adapter = new DirectorioAdapter(this, listar());
         listaTelefono = (ListView) findViewById(R.id.listaAlarma);
