@@ -11,26 +11,33 @@ import java.util.Date;
  */
 
 public class Mensaje {
-    private String name;
+    private Persona persona;
     private String messager;
-    private String estado;
+    private String hora;
     private String fecha;
     private String time;
+    private String lat;
+    private String lon;
 
-    public Mensaje(String name, String messager, String estado, String fecha, String time) {
-        this.name = name;
+    public Mensaje() {
+    }
+
+    public Mensaje(Persona persona,String messager, String hora, String fecha, String time, String lat, String lon) {
+        this.persona = persona;
         this.messager = messager;
-        this.estado = estado;
+        this.hora = hora;
         this.fecha = fecha;
         this.time = time;
+        this.lat = lat;
+        this.lon = lon;
     }
 
-    public String getName() {
-        return name;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     public String getMessager() {
@@ -41,12 +48,12 @@ public class Mensaje {
         this.messager = messager;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getHora() {
+        return hora;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setHora(String hora) {
+        this.hora = hora;
     }
 
     public String getFecha() {
@@ -64,4 +71,21 @@ public class Mensaje {
     public void setTime(String time) {
         this.time = time;
     }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLon() {
+        return lon;
+    }
+
+    public void setLon(String lon) {
+        this.lon = lon;
+    }
+
 }
