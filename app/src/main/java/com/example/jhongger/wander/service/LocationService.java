@@ -109,5 +109,5 @@ public class LocationService implements LocationListener {
         return location;
     }
 
-    
+
 }
