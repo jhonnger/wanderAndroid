@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_home"
+        android:title="Directorio"
+        android:icon="@drawable/ic_contact_phone_black"
+        />
+    <item
+        android:id="@+id/menu_search"
+        android:title="Mapa"
+        android:icon="@drawable/ic_map_black"
+        />
+
+    <item
+        android:id="@+id/menu_notifications"
+        android:title="Denunciar"
+        android:icon="@drawable/ic_description_black" />
+</menu>

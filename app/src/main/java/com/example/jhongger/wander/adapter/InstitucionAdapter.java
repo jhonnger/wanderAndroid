@@ -81,6 +81,7 @@ public class InstitucionAdapter extends ArrayAdapter<Telefono> implements Locati
                 mensaje = new Mensaje(persona,"robo",hora,fecha,time,lat,lon);
                 myref.push().setValue(mensaje);
 
+
                 String posted_by = "306265";
                 Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + posted_by.trim()));
                 if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)

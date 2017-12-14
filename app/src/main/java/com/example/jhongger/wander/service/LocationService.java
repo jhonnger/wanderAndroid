@@ -5,7 +5,6 @@ package com.example.jhongger.wander.service;
  */
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -16,8 +15,11 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
 
-public class LocationService implements LocationListener {
+public class LocationService implements LocationListener, Runnable {
 
     public static final Long MIN_TIME_LOCATION_UPDATE = 2000L; // 2 seg
     public static final Float MIN_DISTANCE_LOCATION_UPDATE = 0f;
@@ -26,8 +28,8 @@ public class LocationService implements LocationListener {
     private Boolean isGPSEnabled;
     private Boolean isNetworkEnabled;
     private Location location;
-    private final int MY_PERMISSIONS_REQUETS=1;
     Context mContext;
+    private GoogleMap mMap;
 
     public LocationService(Context mContext) {
         this.mContext = mContext;
@@ -72,10 +74,7 @@ public class LocationService implements LocationListener {
 
                 if (isNetworkEnabled) {
                     if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        Log.d("","Faltan Permisos");
-                        ActivityCompat.requestPermissions((Activity) mContext,
-                                new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},
-                                MY_PERMISSIONS_REQUETS);
+
 
                     }
                     locationManager.requestLocationUpdates(
@@ -109,5 +108,27 @@ public class LocationService implements LocationListener {
         return location;
     }
 
+    public void run()
+    {
+        currentLocation = getLocation();
+        if (mMap!=null && currentLocation!=null){
+            LatLng actual = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
+            GoogleMap.CancelableCallback cancelableCallback = new GoogleMap.CancelableCallback() {
+                @Override
+                public void onFinish() {
+                    new ReportService().traerDenuncias(mMap.getProjection().getVisibleRegion().latLngBounds);
+                }
 
+                @Override
+                public void onCancel() {
+
+                }
+            };
+            mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(actual,10), 2000, cancelableCallback);
+        }
+    }
+
+    public void setmMap(GoogleMap mMap) {
+        this.mMap = mMap;
+    }
 }

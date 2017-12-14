@@ -1,74 +1,33 @@
 package com.example.jhongger.wander;
 
-import android.content.Context;
-import android.location.LocationManager;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.ListView;
-
-import com.example.jhongger.wander.adapter.DirectorioAdapter;
-import com.example.jhongger.wander.modelo.Institucion;
-import com.example.jhongger.wander.modelo.Telefono;
-
-import java.util.ArrayList;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 
 
-public class DirectorioActivity extends AppCompatActivity {
-    private ListView listaTelefono;
+public class DirectorioActivity extends android.support.v4.app.Fragment {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.frame_lista_planetas, container, false);
+
+        android.support.v4.app.FragmentManager fragmentManager = getFragmentManager();
+        android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        ListaGeneral listaGeneral = new ListaGeneral();
+        fragmentTransaction.add(R.id.lista_de_planetas, listaGeneral);
+        fragmentTransaction.commit();
+        return view;
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_view);
-
-
-
-
-
-        DirectorioAdapter adapter = new DirectorioAdapter(this, listar());
-        listaTelefono = (ListView) findViewById(R.id.listaAlarma);
-        listaTelefono.setAdapter(adapter);
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("Directorio");
     }
 
-    private ArrayList<Institucion> listar(){
-        Telefono telefonosPolicias[] = {
-                new Telefono( "Emergencias", "105"),
-                new Telefono( "Comisaría Tacala", "#961092025"),
-                new Telefono( "Comisaría Castilla", "306265"),
-                new Telefono( "Investigación Criminal", "306255")
-        };
-        Telefono telefonosSerenazgo[] = {
-                new Telefono( "Muni Castilla", "#961092025"),
-                new Telefono( "Emergencias", "105"),
-                new Telefono( "Hospital Regional", "306265"),
-                new Telefono( "B Santa Rosa", "306255")
-        };
-        Telefono telefonosAmbulancias[] = {
-                new Telefono( "Hospital Regional", "306265"),
-                new Telefono( "Emergencias", "105"),
-                new Telefono( "Muni Castilla", "#961092025"),
-                new Telefono( "B Santa Rosa", "306255")
-        };
-        Telefono telefonosBomberos[] = {
-                new Telefono( "B Santa Rosa", "306255"),
-                new Telefono( "Emergencias", "105"),
-                new Telefono( "Muni Castilla", "#961092025"),
-                new Telefono( "Hospital Regional", "306265"),
-        };
-
-        Institucion instituciones[] = {
-                new Institucion("Policia",telefonosPolicias),
-                new Institucion("Serenazgo",telefonosSerenazgo),
-                new Institucion("Ambulacia",telefonosAmbulancias),
-                new Institucion("Bomberos",telefonosBomberos),
-        };
-
-        ArrayList<Institucion> lista = new ArrayList<>();
-        for (Institucion institucion: instituciones) {
-            lista.add(institucion);
-        }
-
-        return lista;
-    }
 }
