@@ -1,5 +1,6 @@
 package com.example.jhongger.wander.adapter;
 
+import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.jhongger.wander.CategoriaTelefonoActivity;
+import com.example.jhongger.wander.ListaInstitucion;
 import com.example.jhongger.wander.R;
 import com.example.jhongger.wander.modelo.Institucion;
 import com.example.jhongger.wander.modelo.Telefono;
@@ -20,6 +22,7 @@ import java.util.List;
  */
 
 public class DirectorioAdapter extends ArrayAdapter<Institucion> {
+
     public DirectorioAdapter(Context context, List<Institucion> objects) {
         super(context, R.layout.alarma_template, objects);
     }
@@ -43,16 +46,18 @@ public class DirectorioAdapter extends ArrayAdapter<Institucion> {
         telefono.setText(getItem(position).getTelefonos()[0].getNumero());
         final Context context = getContext();
 
-        entidad.setOnClickListener(new View.OnClickListener() {
+       /* entidad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent = new Intent(context, CategoriaTelefonoActivity.class);
-                intent.putExtra("nombre",getItem(position).getNombre());
+                ListaInstitucion listaInstitucion = new ListaInstitucion();
 
-                context.startActivity(intent);
+                FragmentTransaction fragmentTransaction = context.getFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.lista_de_planetas, listaInstitucion);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
-        });
+        });*/
         return view;
     }
 }

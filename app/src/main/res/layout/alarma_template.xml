@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:descendantFocusability="blocksDescendants"
     android:layout_height="match_parent">
 
     <TextView
@@ -26,6 +27,7 @@
         android:paddingTop="10sp"
         android:text="Nombre"
         android:textSize="20sp"
+        android:focusable="false"
         android:textStyle="italic" />
 
     <TextView
